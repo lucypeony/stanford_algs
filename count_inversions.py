@@ -18,10 +18,10 @@ def merge_sort_count_inversions(arr):
         if len(arr)==2 and arr[0]>arr[1]:
             mysum =1
         return arr, mysum 
-    print("arr length: ",len(arr))
+    #print("arr length: ",len(arr))
     half = len(arr) // 2
-    left,leftsum = merge_sort(arr[:half])
-    right,rightsum  = merge_sort(arr[half:])
+    left,leftsum = merge_sort_count_inversions(arr[:half])
+    right,rightsum  = merge_sort_count_inversions(arr[half:])
     splitsum = 0 
     out = []
     li = ri = 0  # index of next element from left, right halves
@@ -40,8 +40,11 @@ def merge_sort_count_inversions(arr):
             splitsum += len(left)-li
             ri += 1
     mysum = rightsum + leftsum + splitsum
-    print("in merge_sort:",str(out))
+    #print("in merge_sort:",str(out))
     return out,mysum
 
-my_list=[4,3,2,1]
-print(merge_sort(my_list))
+my_file = open("count_inversions.txt")
+my_list = []
+for line in my_file:
+    my_list.append(int(line))
+print(merge_sort_count_inversions(my_list))  
