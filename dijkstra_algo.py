@@ -2,23 +2,39 @@
 """
 Dijkstra's Algorithm 
 Created on Wed Sep  7 19:45:33 2016
-
 @author: Lucy
 """
 
 def dijkstra_basic(graph,s):
+	#constants 
+	INFINITE = 1000000
+
     #A[] : store shortest path , to minimise the a[v]+l[v,w]
     A={}
     X =set(s)
     Y =set(graph.keys())
+	
+	for node in Y : 
+		A[node] = INFINITE
+	
+	
+	
     Y = Y - X
     A[s] = 0 
-    for v in X : 
-        v_nodes=graph[v]
-        temp_len =  10000
-        for v_nodes_temp in v_nodes: 
-            w,w_len=v_nodes_temp[0],v_nodes_temp[1]
-            if 
+	
+    while not empty(Y):
+		w = NULL 
+		for node in X : 
+			v_w_len = INFINITE
+			for node_v_pair in graph[node]:
+				if node_v_pair[0] in Y:
+					v_w_len_temp = node_v_pair[1] + A[node]
+					if v_w_len_temp < v_w_len : 
+						v_w_len = v_w_len_temp
+						w = node_v_pair[0]
+		X = X + w
+		Y = Y - w
+		A[w] =v_w_len
     
     pass
     
